@@ -17,10 +17,18 @@ Countries.prototype = {
       var jsonString = this.responseText;
       var results = JSON.parse(jsonString);
 
-      var countries = Countries.prototype.populateDropdown(results);
-      callback(countries)
+      var countries = Countries.prototype.createCountriesArray(results);
+      callback(countries);
     });
   },
-  
+  createCountriesArray: function(results){
+    var countries = [];
+
+    for(var result of results){
+      var name = results.name;
+      countries.push(name);
+    }
+    return countries;
+  }
 }
 module.exports = Countries;
